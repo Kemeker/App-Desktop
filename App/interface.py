@@ -1,7 +1,8 @@
 from cProfile import label
+from typing import Text
 import openpyxl
 import pandas as pd
-from tkinter import ttk
+from tkinter import Button, Image, ttk
 import tkinter as tk
 import datetime as dt
 
@@ -15,9 +16,20 @@ lista_ferramentas = ["Chave de Fenda", "Chave Philips", "Alicate Universal", "Al
 def janela_cadastro_tecnicos():
     janela_cadastro = tk.Toplevel()
     janela_cadastro.geometry("800x400") 
-    janela_cadastro.title("Cadastrar Técnico")  
+    janela_cadastro.title("Cadastrar Técnico") 
+
+    '''-------------------------------------------------Cadastro do Tecnico'''''''''''''''''''''''''''''''''''''''''''''''
+    label_nome =tk.Label(janela_cadastro, text='Nome do Técnico')
+    label_nome.grid(row=0, column=0, padx=0, pady=0, columnspan=1) 
+    entrar_nome = tk.Entry(janela_cadastro)
+    entrar_nome.grid(row=0, column=1, padx=0, pady=0, columnspan=1) 
+    
+    
+    botao_cadastrar_tecnico = tk.Button(janela_cadastro, text='Cadastrar')
+    botao_cadastrar_tecnico.grid(row=5, column=4, padx=0, pady=0, columnspan=1) 
 
 
+    
 
 
 
@@ -25,8 +37,31 @@ def janela_cadastro_tecnicos():
 def janela_cadastro_ferramentas():
     janela_cadastro = tk.Toplevel()
     janela_cadastro.geometry("800x400") 
-    janela_cadastro.title("Cadastrar Ferramenta")  
+    janela_cadastro.title("Cadastrar Ferramenta")
+      
 
+    
+
+    label_descricao = tk.Label(janela_cadastro, text="Descrição da ferramenta")
+    label_descricao.grid(row=1, column=0,padx = 10, pady=10, sticky='nswe', columnspan =4 )
+
+    entry_descricao = tk.Entry(janela_cadastro)
+    entry_descricao.grid(row=2,column=0, padx=10, pady=10, sticky='nswe', columnspan = 4)
+
+    label_tipo_unidade = tk.Label(janela_cadastro, text="Código da ferramenta")
+    label_tipo_unidade.grid(row=3, column=0,padx = 10, pady=10, sticky='nswe', columnspan =2 )
+
+    combobox_selecionar_tipo = ttk.Combobox(janela_cadastro, values=lista_tipos)
+    combobox_selecionar_tipo.grid(row=3, column=2, padx = 10, pady=10, sticky='nswe', columnspan = 2)
+
+    label_quant =  tk.Label(janela_cadastro, text="Quantia em estoque")
+    label_quant.grid(row=4, column=0,padx = 10, pady=10, sticky='nswe', columnspan =2 )
+
+    entry_quant =  tk.Entry(janela_cadastro)
+    entry_quant.grid(row=4, column=2,padx = 10, pady=10, sticky='nswe', columnspan =2 )
+
+    botao_criar_codigo = tk.Button(janela_cadastro, text="Cadastrar", command=inserir_codigo)
+    botao_criar_codigo.grid(row=5,column=0,padx = 10, pady=10,sticky='nswe', columnspan =4)
 
 
 
@@ -87,12 +122,26 @@ aplication = tk.Tk()
 aplication.geometry("900x600") 
 aplication.title("DBV Softwares & Sistemas") 
 
+label_descricao = tk.Label(aplication, text="SISTEMA DE CONTROLE")
+label_descricao.grid(row=0, column=5, padx=0, pady=0, columnspan=5)
+
+'''-------------------------------------------------Botoes para direcionar a paginas------------------------------------'''
+botao_solicitar_ferramentas = tk.Button(aplication, text="Solicitar Ferramentas", command=janela_solicitacoes)
+botao_solicitar_ferramentas.grid(row=3, column=1, padx=10, pady=10, columnspan=1)
+
+botao_cadastrar_tecnico = tk.Button(aplication, text="Cadastrar Técnico", command=janela_cadastro_tecnicos)
+botao_cadastrar_tecnico.grid(row=3, column=4, padx=10, pady=10, columnspan=1)
+
+botao_cadastrar_ferramenta = tk.Button(aplication, text='Cadastrar Ferramenta', command=janela_cadastro_ferramentas)
+botao_cadastrar_ferramenta.grid(row=3, column=6, padx=10, pady=10, columnspan=1)
 
 
-botao = tk.Button(aplication, text="Solicitar Ferramentas", command=janela_solicitacoes)
-botao.grid()
+
+
+
 
 aplication.mainloop()
+
 
 
 
