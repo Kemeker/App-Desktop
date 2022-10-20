@@ -101,7 +101,7 @@ lista = coluna_em_lista(tabela,0)
 
 '''----------------------------------------------------------------------Listas-------------------------------------''' 
 lista_voltagem = ["110v","220v","360v","110v~220v"]
-#lista_ferramentas = ["Chave de Fenda", "Chave Philips", "Alicate Universal", "Alicate Diagonal de Corte", "Martelo", "Parafusadeira Dewalt", "Furadeira Bosch", "Grampeadeira Eletrica", "Serrote", "Serra Arco", ]
+
 '''------------------------------------------------------------------------------------------------------------------'''
 
 '''-----------------------------------------------------------Parametros da janela----------------------------------'''
