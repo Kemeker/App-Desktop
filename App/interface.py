@@ -1,17 +1,16 @@
-from cProfile import label
-from typing import Text
 import openpyxl
 import pandas as pd
-from tkinter import Button, Image, ttk
+from tkinter import *
 import tkinter as tk
 import datetime as dt
 import os
+from funçao_banco import *
 
 lista_voltagem = ["110v","220v","360v","110v~220v"]
-lista_ferramentas = ["Chave de Fenda", "Chave Philips", "Alicate Universal", "Alicate Diagonal de Corte", "Martelo", "Parafusadeira Dewalt", "Furadeira Bosch", "Grampeadeira Eletrica", "Serrote", "Serra Arco", ]
-
-
-
+lista_ferramentas = ["Parafusadeira Portatil", "Furadeira", "Alicate Universal ", "Alicate de Pressão ", "Alicate de Corte", "Alicate de Bico", "Chave de Fenda", "Chave Phillips", "Chave Torque", "Chave de Boca  10", "Chave de Boca 11", "Chave de Boca 12", 
+"Chave de Boca 13", "Chave de Boca 14", "Chave de Boca 15", "Chave de Boca 16", "Chave de Boca 17", "Chave de Boca 18", "Chave de Boca 19", "Chave de Boca 20" ]
+lista_tecnicos = ["Marcelo Silva", "Cristian Bevilaqua", "Wallaci Mazzoni",  "Joao carlos", "Jose de Almeida ", "Marcos Oliveira"]
+lista_turnos = ["Manha", "Tarde", "Noite"]
 
 '''-----------------------------------------------INTERFACE CADASTRO DO TECNICO---------------------------------------'''
 def janela_cadastro_tecnicos():
@@ -28,12 +27,6 @@ def janela_cadastro_tecnicos():
     
     botao_cadastrar_tecnico = tk.Button(janela_cadastro, text='Cadastrar')
     botao_cadastrar_tecnico.grid(row=5, column=4, padx=0, pady=0, columnspan=1) 
-
-
-    
-
-
-
 '''-----------------------------------------------INTERFACE PARA CADASTRO DE FERRAMENTAS-----------------------------'''
 def janela_cadastro_ferramentas():
     janela_cadastro = tk.Toplevel()
@@ -63,12 +56,9 @@ def janela_cadastro_ferramentas():
 
     botao_criar_codigo = tk.Button(janela_cadastro, text="Cadastrar", command=inserir_codigo)
     botao_criar_codigo.grid(row=5,column=0,padx = 10, pady=10,sticky='nswe', columnspan =4)
-
-
-
-'''--------------------------------------------------INTERFACE PARA FAZER SOLICITAÇAO DAS FERRAMENTAS--------------------------------'''
-
+'''-----------------------------------------------INTERFACE PARA FAZER SOLICITAÇAO DAS FERRAMENTAS--------------------------------'''
 def janela_solicitacoes():
+    '''funçao para solicitar'''
     janela = tk.Toplevel()
     janela.geometry("800x400") 
     janela.title("Solicitaçao de Ferramentas") 
@@ -77,28 +67,24 @@ def janela_solicitacoes():
     label_codigo_ferramenta.grid(row=0, column=0, padx=10, pady=10)
     entry_ferramenta = tk.Entry(janela)
     entry_ferramenta.grid(row=0, column=1, padx=5, pady=5)
-
+    
     '''------------------------------------------------Caixa para digitar a ferramenta----------------------------------'''
     label_nome_ferramenta = tk.Label(janela, text="Ferramenta:")
     label_nome_ferramenta.grid(row=1, column=0, padx=5, pady=2)
     ferramentas = ttk.Combobox(janela, values=lista_ferramentas)
     ferramentas.grid(row=1, column=1, padx=5, pady=5)
-    '''-----------------------------------------------------------------------------------------------------------------'''
-
+    
     '''----------------------------------Caixa para selecionar a voltagem da ferramenta---------------------------------'''
     label_selecionar_voltagem = tk.Label(janela, text="Voltagem:")
     label_selecionar_voltagem.grid(row=1, column=2, padx = 5, pady = 5)
     selecionar_voltagem = ttk.Combobox(janela, values=lista_voltagem)
     selecionar_voltagem.grid(row=1, column=3, padx = 5, pady = 5)
-    '''-----------------------------------------------------------------------------------------------------------------'''
-
     '''---------------------------------------Caixa para digitar a unidade de ferramentas-------------------------------'''
     label_unidade = tk.Label(janela, text="Unidade:")
     label_unidade.grid(row=1, column=4, padx=5, pady=5, )
     entry_ferramenta = tk.Entry(janela)
     entry_ferramenta.grid(row=1, column=5, padx=5, pady=5, )
     '''------------------------------------------------------------------------------------------------------------------'''
-
     '''-------------------------------------------Data de entrada e saida das ferramentas--------------------------------'''
     label_data_saida = tk.Label(janela, text="Data de saida:")
     label_data_saida.grid(row=2, column=0, padx=10, pady=10, columnspan=1)
@@ -109,16 +95,13 @@ def janela_solicitacoes():
     entry_data_entrada = tk.Entry(janela)
     entry_data_entrada.grid(row=2, column=3, padx=10, pady=10, columnspan=1)
     '''------------------------------------------------------------------------------------------------------------------'''
-
     '''--------------------------------------Botao para cadastrar a solicitaçao--------------------------------------'''
     botao_cadastrar_solicitacao = ttk.Button(janela, text="Cadastrar Solicitaçao")
     botao_cadastrar_solicitacao.grid(row=4, column=1, sticky=tk.E, padx=5, pady=5)
 
-    
+    '''-----------------------------------------------INTERFACE PRINCIPAL DA APLICAÇAO-------------------------------------'''
 
-
-
-'''-----------------------------------------------INTERFACE PRINCIPAL DA APLICAÇAO-------------------------------------'''
+'''-----------------------------------------------INTERFACE PRINCIPAL DO SISTEMA-----------------------------------------------'''
 aplication = tk.Tk() 
 aplication.geometry("900x600") 
 aplication.title("DBV Softwares & Sistemas") 
@@ -145,12 +128,6 @@ botao_cadastrar_ferramenta.place()
 botao_cadastrar_ferramenta.grid(row=3, column=6, padx=10, pady=10, columnspan=1)
 
 '''--------------------------------------------Photo Image-----------------------------------------'''
-
-
-
-
-
-
 
 
 aplication.mainloop()
