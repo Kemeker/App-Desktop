@@ -101,7 +101,7 @@ def janela_solicitacoes():
     '''-------------------------------------------Data de entrada e saida das ferramentas--------------------------------'''
     label_data_saida = tk.Label(janela, text="Data de saida:")
     label_data_saida.grid(row=2, column=0, padx=10, pady=10, columnspan=1)
-    entry_data_saida = tk.Entry()
+    entry_data_saida = tk.Entry(janela)
     entry_data_saida.grid(row=2, column=1, padx=10, pady=10, columnspan=1)
     label_data_entrada = tk.Label(janela, text="Data de entrada:")
     label_data_entrada.grid(row=2, column=2, padx=10, pady=10, columnspan=1)
