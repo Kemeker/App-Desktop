@@ -63,15 +63,15 @@ def janela_solicitacoes():
     janela.geometry("800x400") 
     janela.title("Solicitaçao de Ferramentas") 
     
-    label_codigo_ferramenta = tk.Label(janela, text="Técnico:")
-    label_codigo_ferramenta.grid(row=0, column=0, padx=10, pady=10)
-    entry_ferramenta = tk.Entry(janela)
+    label_nome_tecnico = tk.Label(janela, text="Técnico:")
+    label_nome_tecnico.grid(row=0, column=0, padx=10, pady=10)
+    entry_ferramenta = ttk.Combobox(janela, values=lista_tecnicos)
     entry_ferramenta.grid(row=0, column=1, padx=5, pady=5)
     
     '''------------------------------------------------Caixa para digitar a ferramenta----------------------------------'''
     label_nome_ferramenta = tk.Label(janela, text="Ferramenta:")
     label_nome_ferramenta.grid(row=1, column=0, padx=5, pady=2)
-    ferramentas = ttk.Combobox(janela, )
+    ferramentas = ttk.Combobox(janela, values=lista_ferramentas )
     ferramentas.grid(row=1, column=1, padx=5, pady=5)
     
     '''----------------------------------Caixa para selecionar a voltagem da ferramenta---------------------------------'''
