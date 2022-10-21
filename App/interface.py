@@ -1,6 +1,6 @@
 import openpyxl
 import pandas as pd
-from tkinter import *
+from tkinter import ttk
 import tkinter as tk
 import datetime as dt
 import os
@@ -71,7 +71,7 @@ def janela_solicitacoes():
     '''------------------------------------------------Caixa para digitar a ferramenta----------------------------------'''
     label_nome_ferramenta = tk.Label(janela, text="Ferramenta:")
     label_nome_ferramenta.grid(row=1, column=0, padx=5, pady=2)
-    ferramentas = ttk.Combobox(janela, values=lista_ferramentas)
+    ferramentas = ttk.Combobox(janela, )
     ferramentas.grid(row=1, column=1, padx=5, pady=5)
     
     '''----------------------------------Caixa para selecionar a voltagem da ferramenta---------------------------------'''
@@ -79,6 +79,7 @@ def janela_solicitacoes():
     label_selecionar_voltagem.grid(row=1, column=2, padx = 5, pady = 5)
     selecionar_voltagem = ttk.Combobox(janela, values=lista_voltagem)
     selecionar_voltagem.grid(row=1, column=3, padx = 5, pady = 5)
+    
     '''---------------------------------------Caixa para digitar a unidade de ferramentas-------------------------------'''
     label_unidade = tk.Label(janela, text="Unidade:")
     label_unidade.grid(row=1, column=4, padx=5, pady=5, )
@@ -111,19 +112,19 @@ label_descricao.grid(row=0, column=5, padx=0, pady=0, columnspan=5)
 
 '''-------------------------------------------------Botoes para direcionar a paginas------------------------------------'''
 imagem_solicitar_ferramenta = tk.PhotoImage(file=r'App\imagens\Solicitar ferramenta.png')
-botao_solicitar_ferramentas = Button(aplication, image=imagem_solicitar_ferramenta, command=janela_solicitacoes)
+botao_solicitar_ferramentas = ttk.Button(aplication, image=imagem_solicitar_ferramenta, command=janela_solicitacoes)
 botao_solicitar_ferramentas.place()
 botao_solicitar_ferramentas.grid(row=3, column=1, padx=10, pady=10, columnspan=1)
 
 
 imagem_cadastro_tecnico = tk.PhotoImage(file=r'App\imagens\tecnico.png')
-botao_cadastrar_tecnico = Button(aplication, image=imagem_cadastro_tecnico, command=janela_cadastro_tecnicos)
+botao_cadastrar_tecnico = ttk.Button(aplication, image=imagem_cadastro_tecnico, command=janela_cadastro_tecnicos)
 botao_cadastrar_tecnico.place()
 botao_cadastrar_tecnico.grid(row=3, column=4, padx=10, pady=10, columnspan=1)
 
 
 imagem_cadastro_ferramenta = tk.PhotoImage(file=r'App\imagens\cadastrar ferramenta.png')
-botao_cadastrar_ferramenta = Button(aplication, image=imagem_cadastro_ferramenta, command=janela_cadastro_ferramentas)
+botao_cadastrar_ferramenta = ttk.Button(aplication, image=imagem_cadastro_ferramenta, command=janela_cadastro_ferramentas)
 botao_cadastrar_ferramenta.place()
 botao_cadastrar_ferramenta.grid(row=3, column=6, padx=10, pady=10, columnspan=1)
 
