@@ -5,6 +5,7 @@ import pandas as pd
 from tkinter import Button, Image, ttk
 import tkinter as tk
 import datetime as dt
+import os
 
 lista_voltagem = ["110v","220v","360v","110v~220v"]
 lista_ferramentas = ["Chave de Fenda", "Chave Philips", "Alicate Universal", "Alicate Diagonal de Corte", "Martelo", "Parafusadeira Dewalt", "Furadeira Bosch", "Grampeadeira Eletrica", "Serrote", "Serra Arco", ]
@@ -122,18 +123,30 @@ aplication = tk.Tk()
 aplication.geometry("900x600") 
 aplication.title("DBV Softwares & Sistemas") 
 
-label_descricao = tk.Label(aplication, text="SISTEMA DE CONTROLE")
+label_descricao = tk.Label(aplication, text='SISTEMA DE CONTROLE')
 label_descricao.grid(row=0, column=5, padx=0, pady=0, columnspan=5)
 
 '''-------------------------------------------------Botoes para direcionar a paginas------------------------------------'''
-botao_solicitar_ferramentas = tk.Button(aplication, text="Solicitar Ferramentas", command=janela_solicitacoes)
+imagem_solicitar_ferramenta = tk.PhotoImage(file=r'App\imagens\Solicitar ferramenta.png')
+botao_solicitar_ferramentas = Button(aplication, image=imagem_solicitar_ferramenta, command=janela_solicitacoes)
+botao_solicitar_ferramentas.place()
 botao_solicitar_ferramentas.grid(row=3, column=1, padx=10, pady=10, columnspan=1)
 
-botao_cadastrar_tecnico = tk.Button(aplication, text="Cadastrar Técnico", command=janela_cadastro_tecnicos)
+
+imagem_cadastro_tecnico = tk.PhotoImage(file=r'App\imagens\tecnico.png')
+botao_cadastrar_tecnico = Button(aplication, image=imagem_cadastro_tecnico, command=janela_cadastro_tecnicos)
+botao_cadastrar_tecnico.place()
 botao_cadastrar_tecnico.grid(row=3, column=4, padx=10, pady=10, columnspan=1)
 
-botao_cadastrar_ferramenta = tk.Button(aplication, text='Cadastrar Ferramenta', command=janela_cadastro_ferramentas)
+
+imagem_cadastro_ferramenta = tk.PhotoImage(file=r'App\imagens\cadastrar ferramenta.png')
+botao_cadastrar_ferramenta = Button(aplication, image=imagem_cadastro_ferramenta, command=janela_cadastro_ferramentas)
+botao_cadastrar_ferramenta.place()
 botao_cadastrar_ferramenta.grid(row=3, column=6, padx=10, pady=10, columnspan=1)
+
+'''--------------------------------------------Photo Image-----------------------------------------'''
+
+
 
 
 
