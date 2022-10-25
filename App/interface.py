@@ -112,28 +112,55 @@ def janela_solicitacoes():
     janela.geometry("800x400") 
     janela.title("Solicitaçao de Ferramentas") 
     
+    def nova_solicitacao():
+        BD: openpyxl.Workbook = abrir_BD()
+        sh = BD.active
+        colI = 0
+        colF = 0
+        novaLinha = 0
+        for col in range(1, 100, 1):
+            if sh.cell(row=1, column=col).value == 'Tecnico':
+                colI = col
+                break
+        for col in range(colI, 100, 1):
+            if sh.cell(row=1, column=col + 1).value == None:
+                colF = col
+                break
+        for lin in range(1, 1_000_000, 1):
+            if sh.cell(row=lin, column=colI).value == None:
+                novaLinha = lin
+                break
+        contador = 0
+        infomacoes = [entry_tecnico.get(), ferramentas.get(), selecionar_voltagem.get(), entry_unidade.get(), entry_data_saida.get(), entry_data_entrada.get()]
+        for col in range(colI, colF + 1, 1):
+            sh.cell(row=novaLinha, column=col).value = infomacoes[contador]
+            contador +=1
+        fechar_BD(BD)
+        janela.destroy()
+        msg.showinfo('Cadastrar Solicitaçao', 'Solicitaçao Cadastrada!')
+
     label_nome_tecnico = tk.Label(janela, text="Técnico:")
     label_nome_tecnico.grid(row=0, column=0, padx=10, pady=10)
-    entry_ferramenta = ttk.Combobox(janela, values=lista_tecnicos)
-    entry_ferramenta.grid(row=0, column=1, padx=5, pady=5)
-    
+    entry_tecnico = ttk.Combobox(janela, values=lista_tecnicos)
+    entry_tecnico.grid(row=0, column=1, padx=5, pady=5)
+
     '''------------------------------------------------Caixa para digitar a ferramenta----------------------------------'''
     label_nome_ferramenta = tk.Label(janela, text="Ferramenta:")
     label_nome_ferramenta.grid(row=1, column=0, padx=5, pady=2)
-    ferramentas = ttk.Combobox(janela, values=lista_ferramentas )
+    ferramentas = ttk.Combobox(janela, values=lista_ferramentas)
     ferramentas.grid(row=1, column=1, padx=5, pady=5)
-    
+
     '''----------------------------------Caixa para selecionar a voltagem da ferramenta---------------------------------'''
     label_selecionar_voltagem = tk.Label(janela, text="Voltagem:")
-    label_selecionar_voltagem.grid(row=1, column=2, padx = 5, pady = 5)
+    label_selecionar_voltagem.grid(row=1, column=2, padx=5, pady=5)
     selecionar_voltagem = ttk.Combobox(janela, values=lista_voltagem)
-    selecionar_voltagem.grid(row=1, column=3, padx = 5, pady = 5)
-    
+    selecionar_voltagem.grid(row=1, column=3, padx=5, pady=5)
+
     '''---------------------------------------Caixa para digitar a unidade de ferramentas-------------------------------'''
     label_unidade = tk.Label(janela, text="Unidade:")
     label_unidade.grid(row=1, column=4, padx=5, pady=5, )
-    entry_ferramenta = tk.Entry(janela)
-    entry_ferramenta.grid(row=1, column=5, padx=5, pady=5, )
+    entry_unidade = tk.Entry(janela)
+    entry_unidade.grid(row=1, column=5, padx=5, pady=5, )
     '''------------------------------------------------------------------------------------------------------------------'''
     '''-------------------------------------------Data de entrada e saida das ferramentas--------------------------------'''
     label_data_saida = tk.Label(janela, text="Data de saida:")
@@ -145,9 +172,10 @@ def janela_solicitacoes():
     entry_data_entrada = tk.Entry(janela)
     entry_data_entrada.grid(row=2, column=3, padx=10, pady=10, columnspan=1)
     '''------------------------------------------------------------------------------------------------------------------'''
+    
     '''--------------------------------------Botao para cadastrar a solicitaçao--------------------------------------'''
-    botao_cadastrar_solicitacao = ttk.Button(janela, text="Cadastrar Solicitaçao")
-    botao_cadastrar_solicitacao.grid(row=4, column=1, sticky=tk.E, padx=5, pady=5)
+    botao_cadastrar_tecnico = tk.Button(janela, text='Cadastrar')
+    botao_cadastrar_tecnico.grid(row=4, column=2, padx=0, pady=0, columnspan=1) 
 
     '''-----------------------------------------------INTERFACE PRINCIPAL DA APLICAÇAO-------------------------------------'''
 
