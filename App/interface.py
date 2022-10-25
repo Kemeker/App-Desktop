@@ -4,21 +4,49 @@ from tkinter import ttk
 import tkinter as tk
 import datetime as dt
 import os
+from App.funçao_banco import carrega_lista
 from funçao_banco import *
 
-lista_voltagem = ["110v","220v","360v","110v~220v"]
-lista_ferramentas = ["Parafusadeira Portatil", "Furadeira", "Alicate Universal ", "Alicate de Pressão ", "Alicate de Corte", "Alicate de Bico", "Chave de Fenda", "Chave Phillips", "Chave Torque", "Chave de Boca  10", "Chave de Boca 11", "Chave de Boca 12", 
-"Chave de Boca 13", "Chave de Boca 14", "Chave de Boca 15", "Chave de Boca 16", "Chave de Boca 17", "Chave de Boca 18", "Chave de Boca 19", "Chave de Boca 20" ]
-lista_tecnicos = ["Marcelo Silva", "Cristian Bevilaqua", "Wallaci Mazzoni",  "Joao carlos", "Jose de Almeida ", "Marcos Oliveira"]
+lista_voltagem = ["110v", "220v", "360v", "110v~220v"]
+lista_ferramentas = carrega_lista('Ferramentas')
+lista_tecnicos = carrega_lista('Tecnicos')
 lista_turnos = ["Manha", "Tarde", "Noite"]
 
 '''-----------------------------------------------INTERFACE CADASTRO DO TECNICO---------------------------------------'''
 def janela_cadastro_tecnicos():
+    '''Funçao para cadastrar tecnico'''
     janela_cadastro = tk.Toplevel()
     janela_cadastro.geometry("800x400") 
     janela_cadastro.title("Cadastrar Técnico") 
 
-    '''-------------------------------------------------Cadastro do Tecnico'''''''''''''''''''''''''''''''''''''''''''''''
+    def novo_tecnico():
+        BD: openpyxl.Workbook = abrir_BD()
+        sh = BD.active
+        colI = 0
+        colF = 0
+        novaLinha = 0
+        for col in range(1, 100, 1):
+            if sh.cell(row=1, column=col).value == 'Tecnicos':
+                colI = col
+                break
+        for col in range(colI, 100, 1):
+            if sh.cell(row=1, column=col + 1).value == None:
+                colF = col
+                break
+        for lin in range(1, 1_000_000, 1):
+            if sh.cell(row=lin, column=colI).value == None:
+                novaLinha = lin
+                break
+        contador = 0
+        infomacoes = [entrar_nome.get(), entrar_cpf.get(), entrar_turno.get(), entrar_radio.get(), entrar_equipe.get()]
+        for col in range(colI, colF + 1, 1):
+            sh.cell(row=novaLinha, column=col).value = infomacoes[contador]
+            contador +=1
+        fechar_BD(BD)
+        janela_cadastro.destroy()
+        msg.showinfo('Cadastro de Tecnicos', 'Tecnico Cadastrado!')
+
+    '''-------------------------------------------------Cadastro do Tecnico------------------------------------------------'''
     label_nome =tk.Label(janela_cadastro, text='Nome do Técnico:')
     label_nome.grid(row=0, column=0, padx=0, pady=0, columnspan=1) 
     entrar_nome = tk.Entry(janela_cadastro)
