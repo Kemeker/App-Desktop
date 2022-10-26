@@ -7,10 +7,13 @@ import os
 import tkinter.messagebox as msg
 from funçao_banco import *
 
-lista_voltagem = ["110v", "220v", "360v", "110v~220v"]
+lista_voltagem = ["110v", "220v", "360v", "110v~220v", "Energia Desligada"]
 lista_ferramentas = carrega_lista('Ferramentas')
 lista_tecnicos = carrega_lista('Tecnicos')
 lista_turnos = ["Manha", "Tarde", "Noite"]
+lista_tipo_ferramenta = ['Mecanica', 'Eletronica', 'Segurança', 'Outros']
+lista_unidade_medidas = ["CM", "MT", "Polegada"]
+lista_material_ferramenta = ["Ferro", "Aluminio", "Plastico", "Madeira", "Aço"]
 
 '''-----------------------------------------------INTERFACE CADASTRO DO TECNICO---------------------------------------'''
 def janela_cadastro_tecnicos():
@@ -91,7 +94,7 @@ def interface_cadastro_ferramentas():
         colF = 0
         novaLinha = 0
         for col in range(1, 100, 1):
-            if sh.cell(row=1, column=col).value == 'Ferramentas':
+            if sh.cell(row=1, column=col).value == 'ID':
                 colI = col
                 break
         for col in range(colI, 100, 1):
@@ -103,7 +106,8 @@ def interface_cadastro_ferramentas():
                 novaLinha = lin
                 break
         contador = 0
-        infomacoes = [entry_descricao.get() ]
+        infomacoes = [entry_id_ferramenta.get(), entry_nome_ferramenta.get(), entry_fabricante.get(), entry_voltagem_uso.get(), entry_tamanho.get(), entry_unidade_medida.get(),  
+        entry_tipo_ferramenta.get(), entry_material_ferramenta.get(), entry_tempo_uso.get() ]
         for col in range(colI, colF + 1, 1):
             sh.cell(row=novaLinha, column=col).value = infomacoes[contador]
             contador +=1
@@ -111,29 +115,63 @@ def interface_cadastro_ferramentas():
         janela_cadastro_ferramentas.destroy()
         msg.showinfo('Cadastrar', 'Ferramenta Cadastrada!')
 
+    '''----------------------------------------ID  da ferramenta---------------------------------------'''
+    label_id_ferramenta = tk.Label(janela_cadastro_ferramentas, text="ID: ")
+    label_id_ferramenta.grid(row=1, column=0, padx=0, pady=0, columnspan=1)
+    entry_id_ferramenta = tk.Entry(janela_cadastro_ferramentas)
+    entry_id_ferramenta.grid(row=1, column=1, padx=0, pady=0, columnspan=1)
     
-
+    '''----------------------------------------Descriçao  da ferramenta---------------------------------'''
+    label_nome_ferramenta = tk.Label(janela_cadastro_ferramentas, text="Descrição da ferramenta: ")
+    label_nome_ferramenta.grid(row=2, column=0, padx=0, pady=0, columnspan=1)
+    entry_nome_ferramenta = tk.Entry(janela_cadastro_ferramentas)
+    entry_nome_ferramenta.grid(row=2, column=1, padx=0, pady=0, columnspan=1)
     
-    label_descricao = tk.Label(janela_cadastro_ferramentas, text="Descrição da ferramenta")
-    label_descricao.grid(row=1, column=0, padx=10, pady=10, sticky='nswe', columnspan=4)
+    '''--------------------------------------Fabricante-------------------------------------------------'''
+    label_fabricante = tk.Label(janela_cadastro_ferramentas, text="Fabricante: ")
+    label_fabricante.grid(row=3, column=0, padx=0, pady=0, columnspan=1)
+    entry_fabricante = tk.Entry(janela_cadastro_ferramentas)
+    entry_fabricante.grid(row=3, column=1, padx=0, pady=0, columnspan=1)
 
-    entry_descricao = tk.Entry(janela_cadastro_ferramentas)
-    entry_descricao.grid(row=2, column=0, padx=10, pady=10, sticky='nswe', columnspan=4)
+    '''--------------------------------------Voltagem de Uso---------------------------------------------'''
+    label_voltagem_uso = tk.Label(janela_cadastro_ferramentas, text="Voltagem de Uso: ")
+    label_voltagem_uso.grid(row=4, column=0, padx=0, pady=0, columnspan=1)
+    entry_voltagem_uso = ttk.Combobox(janela_cadastro_ferramentas, values=lista_voltagem)
+    entry_voltagem_uso.grid(row=4, column=1, padx=0, pady=0, columnspan=1)
+    
+    '''--------------------------------------Tamanho-----------------------------------------------------'''
+    label_tamanho = tk.Label(janela_cadastro_ferramentas, text="Tamanho: ")
+    label_tamanho.grid(row=5, column=0, padx=0, pady=0, columnspan=1)
+    entry_tamanho = tk.Entry(janela_cadastro_ferramentas)
+    entry_tamanho.grid(row=5, column=1, padx=0, pady=0, columnspan=1)
 
-    label_tipo_unidade = tk.Label(janela_cadastro_ferramentas, text="Código da ferramenta")
-    label_tipo_unidade.grid(row=3, column=0, padx=10, pady=10, sticky='nswe', columnspan=2)
+    '''--------------------------------------Unidade de Medida--------------------------------------------'''
+    label_unidade_medida = tk.Label(janela_cadastro_ferramentas, text="unidade de Medida: ")
+    label_unidade_medida.grid(row=6, column=0, padx=0, pady=0, columnspan=1)
+    entry_unidade_medida = ttk.Combobox(janela_cadastro_ferramentas, values=lista_unidade_medidas)
+    entry_unidade_medida.grid(row=6, column=1, padx=0, pady=0, columnspan=1)
 
-    combobox_selecionar_tipo = ttk.Combobox(janela_cadastro_ferramentas, values=lista_tipos)
-    combobox_selecionar_tipo.grid(row=3, column=2, padx=10, pady=10, sticky='nswe', columnspan=2)
+    '''--------------------------------------Tipo de Ferramenta--------------------------------------------'''
+    label_tipo_ferramenta = tk.Label(janela_cadastro_ferramentas, text="Tipo de Ferramenta: ")
+    label_tipo_ferramenta.grid(row=7, column=0, padx=0, pady=0, columnspan=1)
+    entry_tipo_ferramenta = ttk.Combobox(janela_cadastro_ferramentas, values=lista_tipo_ferramenta)
+    entry_tipo_ferramenta.grid(row=7, column=1, padx=0, pady=0, columnspan=1)
 
-    label_quant = tk.Label(janela_cadastro_ferramentas, text="Quantia em estoque")
-    label_quant.grid(row=4, column=0, padx=10, pady=10, sticky='nswe', columnspan=2)
+    '''--------------------------------------Material da Ferramenta-----------------------------------------'''
+    label_material_ferramenta = tk.Label(janela_cadastro_ferramentas, text="Material da Ferramenta: ")
+    label_material_ferramenta.grid(row=8, column=0, padx=0, pady=0, columnspan=1)
+    entry_material_ferramenta = ttk.Combobox(janela_cadastro_ferramentas, values=lista_material_ferramenta)
+    entry_material_ferramenta.grid(row=8, column=1, padx=0, pady=0, columnspan=1)
 
-    entry_quant = tk.Entry(janela_cadastro_ferramentas)
-    entry_quant.grid(row=4, column=2, padx=10, pady=10, sticky='nswe', columnspan=2)
+    '''--------------------------------------Tempo de uso-----------------------------------------------------'''
+    label_tempo_uso = tk.Label(janela_cadastro_ferramentas, text="Tempo de Uso: ")
+    label_tempo_uso.grid(row=9, column=0, padx=0, pady=0, columnspan=1)
+    entry_tempo_uso = tk.Entry(janela_cadastro_ferramentas)
+    entry_tempo_uso.grid(row=9, column=1, padx=0, pady=0, columnspan=1)
 
-    botao_criar_codigo = tk.Button(janela_cadastro_ferramentas, text="Cadastrar", command=nova_ferramenta)
-    botao_criar_codigo.grid(row=5, column=0, padx=10, pady=10, sticky='nswe', columnspan=4)
+    botao_cadastrar_ferramenta = tk.Button(janela_cadastro_ferramentas, text='Cadastrar', command=nova_ferramenta)
+    botao_cadastrar_ferramenta.grid(row=10, column=2, padx=0, pady=0, columnspan=1)
+
 '''-----------------------------------------------INTERFACE PARA FAZER SOLICITAÇAO DAS FERRAMENTAS--------------------------------'''
 def janela_solicitacoes():
     '''funçao para solicitar'''
@@ -183,7 +221,7 @@ def janela_solicitacoes():
     ferramentas.grid(row=1, column=1, padx=5, pady=5)
 
     '''----------------------------------Caixa para selecionar a voltagem da ferramenta---------------------------------'''
-    label_selecionar_voltagem = tk.Label(janela, text="Voltagem:")
+    label_selecionar_voltagem = tk.Label(janela, text="Voltagem de Trabalho:")
     label_selecionar_voltagem.grid(row=1, column=2, padx=5, pady=5)
     selecionar_voltagem = ttk.Combobox(janela, values=lista_voltagem)
     selecionar_voltagem.grid(row=1, column=3, padx=5, pady=5)
