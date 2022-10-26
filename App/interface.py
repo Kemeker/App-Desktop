@@ -8,7 +8,7 @@ import tkinter.messagebox as msg
 from funçao_banco import *
 
 lista_voltagem = ["110v", "220v", "360v", "110v~220v"]
-lista_ferramentas = carrega_lista('Nome')
+lista_ferramentas = carrega_lista('Ferramentas')
 lista_tecnicos = carrega_lista('Tecnicos')
 lista_turnos = ["Manha", "Tarde", "Noite"]
 
@@ -19,6 +19,7 @@ def janela_cadastro_tecnicos():
     janela_cadastro.title("Cadastrar Técnico")
     '''------------------------------------------------ADICIONAR INF NO BD------------------------------------------------'''
     def novo_tecnico():
+        global lista_tecnicos
         BD: openpyxl.Workbook = abrir_BD()
         sh = BD.active
         colI = 0
@@ -42,8 +43,11 @@ def janela_cadastro_tecnicos():
             sh.cell(row=novaLinha, column=col).value = infomacoes[contador]
             contador +=1
         fechar_BD(BD)
+        lista_tecnicos = carrega_lista('Tecnicos')
         janela_cadastro.destroy()
         msg.showinfo('Cadastro de Tecnicos', 'Tecnico Cadastrado!')
+    
+       
 
     '''-------------------------------------------------Cadastro do Tecnico'''''''''''''''''''''''''''''''''''''''''''''''
     label_nome = tk.Label(janela_cadastro, text='Nome do Técnico:')
@@ -128,16 +132,18 @@ def interface_cadastro_ferramentas():
     entry_quant = tk.Entry(janela_cadastro_ferramentas)
     entry_quant.grid(row=4, column=2, padx=10, pady=10, sticky='nswe', columnspan=2)
 
-    botao_criar_codigo = tk.Button(janela_cadastro_ferramentas, text="Cadastrar", command=inserir_codigo)
+    botao_criar_codigo = tk.Button(janela_cadastro_ferramentas, text="Cadastrar", command=nova_ferramenta)
     botao_criar_codigo.grid(row=5, column=0, padx=10, pady=10, sticky='nswe', columnspan=4)
 '''-----------------------------------------------INTERFACE PARA FAZER SOLICITAÇAO DAS FERRAMENTAS--------------------------------'''
 def janela_solicitacoes():
     '''funçao para solicitar'''
+    
     janela = tk.Toplevel()
     janela.geometry("800x400")
     janela.title("Solicitaçao de Ferramentas")
 
     def nova_solicitacao():
+        global lista_ferramentas
         BD: openpyxl.Workbook = abrir_BD()
         sh = BD.active
         colI = 0
@@ -161,6 +167,7 @@ def janela_solicitacoes():
             sh.cell(row=novaLinha, column=col).value = infomacoes[contador]
             contador +=1
         fechar_BD(BD)
+        lista_ferramentas = carrega_lista('Ferramentas')
         janela.destroy()
         msg.showinfo('Solicitar', 'Solicitacao Concluida!')
 
@@ -251,97 +258,3 @@ aplication.mainloop()
 
 
 
-"""
-
-'''------------------------criar o acesso ao banco de dados----------------------------------------------------'''
-def abrir_BD() -> openpyxl.Workbook:
-    BD: openpyxl.Workbook = openpyxl.load_workbook(r'App\banco.xlsx')
-    return BD
-def fechar_BD(BD: openpyxl.Workbook):
-    BD.save(r'App\banco.xlsx')
-    BD.close()
-
-
-
-
-'''------------------------criar o acesso ao banco de dados----------------------------------------------------'''
-def abrir_BD() -> openpyxl.Workbook:
-    BD: openpyxl.Workbook = openpyxl.load_workbook(r'App\banco.xlsx')
-    return BD
-def fechar_BD(BD: openpyxl.Workbook):
-    BD.save(r'App\banco.xlsx')
-    BD.close()
-
-'''------------------------funcoes com a tabela workbook-------------------------------------------------------'''
-def dimencoes_tabela():
-    '''o openpyxl não dimenciona onde começa e termina a tabela,
-    essa função vai achar a linha e coluna inicial e final.
-    para usar faça: colI, colF, linI, linF = dimencoes_tabela()'''
-
-    #setando variaveis:
-    colI = 0
-    colF = 0
-    linI = 0
-    linF = 0
-
-    #abrindo BD
-    BD = abrir_BD()
-
-
-    #achando primeira linha e coluna:
-    for col in range(1,101,1):
-        if linI > 0:
-            break
-        for lin in range(1,101,1):
-            if BD.active.cell(row=lin,column=col).value != None:
-                linI = lin
-                colI = col
-                break
-
-    #encontrar ultima linha:
-    for lin in range(linI,1_000_000,1):
-        if BD.active.cell(row=lin+1,column=colI).value == None:
-            linF = lin
-            break
-    #encontrar ultima coluna:
-    for col in range(colI,1000,1):
-        if BD.active.cell(row=linI,column=col+1).value == None:
-            colF = col
-            break
-    fechar_BD(BD)
-    return colI,colF,linI,linF
-def puxar_cabecalho():
-    '''essa puxa somente o cabecalho tabela do BD'''
-    BD = abrir_BD()
-    colI, colF, linI, linF = dimencoes_tabela()
-    cabecalho = []
-    for col in range(colI,colF+1,1):
-        cabecalho.append(BD.active.cell(row=linI,column=col).value)
-def puxar_tabela() -> list:
-    '''essa puxa somente o corpo tabela do BD'''
-    BD = abrir_BD()
-    colI, colF, linI, linF = dimencoes_tabela()
-
-    tabela = []
-    for lin in range(linI+1,linF+1,1):
-        linha = []
-        for col in range(colI,colF+1,1):
-            linha.append(BD.active.cell(row=lin,column=col).value)
-        tabela.append(linha)
-    fechar_BD(BD)
-    return tabela
-def coluna_em_lista(tabela: list, coluna: int) -> list:
-    '''essa funcão é pra gerar uma lista da coluna desejada da tabela
-    (como usar: tabela[a tabela puxada da funcao PUXAR TABELA], numero da coluna.)'''
-    lista = []
-    for item in tabela:
-        lista.append(item[coluna])
-    return lista
-'''------------------------------------------------------------------------------------------------------------'''
-
-'''------------------------------ puxando informacoes da lista-------------------------------------------------'''
-tabela = puxar_tabela() #sua tabela não tem mais de uma coluna, mesmo assim, a tabela é gerada como matriz.
-lista = coluna_em_lista(tabela,0)
-'''------------------------------------------------------------------------------------------------------------'''
-
-"""
