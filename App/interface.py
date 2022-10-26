@@ -278,7 +278,7 @@ botao_cadastrar_tecnico = ttk.Button(aplication, image=imagem_cadastro_tecnico, 
 botao_cadastrar_tecnico.place()
 botao_cadastrar_tecnico.grid(row=2, column=4, padx=0, pady=0, columnspan=1)
 imagem_cadastro_ferramenta = tk.PhotoImage(file=r'App\imagens\cadastrar ferramenta.png')
-botao_cadastrar_ferramenta = ttk.Button(aplication, image=imagem_cadastro_ferramenta, command=interface_cadastro_ferramentas
+botao_cadastrar_ferramenta = ttk.Button(aplication, image=imagem_cadastro_ferramenta, command=interface_cadastro_ferramentas)
 botao_cadastrar_ferramenta.place()
 botao_cadastrar_ferramenta.grid(row=2, column=6, padx=0, pady=0, columnspan=1)
 
