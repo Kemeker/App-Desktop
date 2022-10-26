@@ -51,7 +51,6 @@ def carregar_tabela(Tecnicos: str) -> list:
 
 
 
-
 '''-----------------------Funçao Chekar CPF----------------------------------'''
 """
 while True:

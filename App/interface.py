@@ -8,13 +8,11 @@ import tkinter.messagebox as msg
 from funçao_banco import *
 
 lista_voltagem = ["110v", "220v", "360v", "110v~220v"]
-lista_ferramentas = carrega_lista('Ferramentas')
+lista_ferramentas = carrega_lista('Nome')
 lista_tecnicos = carrega_lista('Tecnicos')
 lista_turnos = ["Manha", "Tarde", "Noite"]
 
 '''-----------------------------------------------INTERFACE CADASTRO DO TECNICO---------------------------------------'''
-
-
 def janela_cadastro_tecnicos():
     janela_cadastro = tk.Toplevel()
     janela_cadastro.geometry("800x400")
@@ -76,41 +74,63 @@ def janela_cadastro_tecnicos():
 
     botao_cadastrar_tecnico = tk.Button(janela_cadastro, text='Cadastrar', command=novo_tecnico)
     botao_cadastrar_tecnico.grid(row=6, column=3, padx=0, pady=0, columnspan=1)
-
-
 '''-----------------------------------------------INTERFACE PARA CADASTRO DE FERRAMENTAS-----------------------------'''
+def interface_cadastro_ferramentas():
+    janela_cadastro_ferramentas = tk.Toplevel()
+    janela_cadastro_ferramentas.geometry("800x400")
+    janela_cadastro_ferramentas.title("Cadastrar Ferramenta")
 
+    def nova_ferramenta():
+        BD: openpyxl.Workbook = abrir_BD()
+        sh = BD.active
+        colI = 0
+        colF = 0
+        novaLinha = 0
+        for col in range(1, 100, 1):
+            if sh.cell(row=1, column=col).value == 'Ferramentas':
+                colI = col
+                break
+        for col in range(colI, 100, 1):
+            if sh.cell(row=1, column=col + 1).value == None:
+                colF = col
+                break
+        for lin in range(1, 1_000_000, 1):
+            if sh.cell(row=lin, column=colI).value == None:
+                novaLinha = lin
+                break
+        contador = 0
+        infomacoes = [entry_descricao.get() ]
+        for col in range(colI, colF + 1, 1):
+            sh.cell(row=novaLinha, column=col).value = infomacoes[contador]
+            contador +=1
+        fechar_BD(BD)
+        janela_cadastro_ferramentas.destroy()
+        msg.showinfo('Cadastrar', 'Ferramenta Cadastrada!')
 
-def janela_cadastro_ferramentas():
-    janela_cadastro = tk.Toplevel()
-    janela_cadastro.geometry("800x400")
-    janela_cadastro.title("Cadastrar Ferramenta")
+    
 
-    label_descricao = tk.Label(janela_cadastro, text="Descrição da ferramenta")
+    
+    label_descricao = tk.Label(janela_cadastro_ferramentas, text="Descrição da ferramenta")
     label_descricao.grid(row=1, column=0, padx=10, pady=10, sticky='nswe', columnspan=4)
 
-    entry_descricao = tk.Entry(janela_cadastro)
+    entry_descricao = tk.Entry(janela_cadastro_ferramentas)
     entry_descricao.grid(row=2, column=0, padx=10, pady=10, sticky='nswe', columnspan=4)
 
-    label_tipo_unidade = tk.Label(janela_cadastro, text="Código da ferramenta")
+    label_tipo_unidade = tk.Label(janela_cadastro_ferramentas, text="Código da ferramenta")
     label_tipo_unidade.grid(row=3, column=0, padx=10, pady=10, sticky='nswe', columnspan=2)
 
-    combobox_selecionar_tipo = ttk.Combobox(janela_cadastro, values=lista_tipos)
+    combobox_selecionar_tipo = ttk.Combobox(janela_cadastro_ferramentas, values=lista_tipos)
     combobox_selecionar_tipo.grid(row=3, column=2, padx=10, pady=10, sticky='nswe', columnspan=2)
 
-    label_quant = tk.Label(janela_cadastro, text="Quantia em estoque")
+    label_quant = tk.Label(janela_cadastro_ferramentas, text="Quantia em estoque")
     label_quant.grid(row=4, column=0, padx=10, pady=10, sticky='nswe', columnspan=2)
 
-    entry_quant = tk.Entry(janela_cadastro)
+    entry_quant = tk.Entry(janela_cadastro_ferramentas)
     entry_quant.grid(row=4, column=2, padx=10, pady=10, sticky='nswe', columnspan=2)
 
-    botao_criar_codigo = tk.Button(janela_cadastro, text="Cadastrar", command=inserir_codigo)
+    botao_criar_codigo = tk.Button(janela_cadastro_ferramentas, text="Cadastrar", command=inserir_codigo)
     botao_criar_codigo.grid(row=5, column=0, padx=10, pady=10, sticky='nswe', columnspan=4)
-
-
 '''-----------------------------------------------INTERFACE PARA FAZER SOLICITAÇAO DAS FERRAMENTAS--------------------------------'''
-
-
 def janela_solicitacoes():
     '''funçao para solicitar'''
     janela = tk.Toplevel()
@@ -147,7 +167,7 @@ def janela_solicitacoes():
     label_nome_tecnico = tk.Label(janela, text="Técnico:")
     label_nome_tecnico.grid(row=0, column=0, padx=10, pady=10)
     entry_tecnico = ttk.Combobox(janela, values=lista_tecnicos)
-    entry_tecnico.grid(row=0, column=1, padx=5, pady=5)
+    entry_tecnico.grid(row=0, column=1, padx=0, pady=0)
 
     '''------------------------------------------------Caixa para digitar a ferramenta----------------------------------'''
     label_nome_ferramenta = tk.Label(janela, text="Ferramenta:")
@@ -178,7 +198,7 @@ def janela_solicitacoes():
     entry_data_entrada.grid(row=2, column=3, padx=10, pady=10, columnspan=1)
     '''------------------------------------------------------------------------------------------------------------------'''
     '''--------------------------------------Botao para cadastrar a solicitaçao--------------------------------------'''
-    botao_cadastrar_solicitacao = ttk.Button(janela, text="Cadastrar Solicitaçao")
+    botao_cadastrar_solicitacao = ttk.Button(janela, text="Cadastrar Solicitaçao", command=nova_solicitacao)
     botao_cadastrar_solicitacao.grid(row=4, column=1, sticky=tk.E, padx=5, pady=5)
 
     '''-----------------------------------------------INTERFACE PRINCIPAL DA APLICAÇAO-------------------------------------'''
@@ -210,8 +230,8 @@ botao_cadastrar_tecnico.place()
 botao_cadastrar_tecnico.grid(row=2, column=4, padx=0, pady=0, columnspan=1)
 
 imagem_cadastro_ferramenta = tk.PhotoImage(file=r'App\imagens\cadastrar ferramenta.png')
-botao_cadastrar_ferramenta = ttk.Button(aplication, image=imagem_cadastro_ferramenta,
-                                        command=janela_cadastro_ferramentas)
+botao_cadastrar_ferramenta = ttk.Button(aplication, image=imagem_cadastro_ferramenta, command=interface_cadastro_ferramentas)
+                                        
 botao_cadastrar_ferramenta.place()
 botao_cadastrar_ferramenta.grid(row=2, column=6, padx=0, pady=0, columnspan=1)
 
