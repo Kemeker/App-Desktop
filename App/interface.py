@@ -254,33 +254,30 @@ def janela_solicitacoes():
 
 '''-----------------------------------------------INTERFACE PRINCIPAL DO SISTEMA-----------------------------------------------'''
 aplication = tk.Tk()
-aplication.geometry("900x600")
+
 aplication.title("DBV Softwares & Sistemas")
+aplication.configure(background="grey")
+aplication.geometry("800x600")
+background = PhotoImage(file=r'App\imagens\projeto-desktop.png')
+canvas1 = Canvas(aplication)
 
-nome_cadastro = tk.Label(aplication, text='CADASTRAR FERRAMENTAS')
-nome_cadastro.grid(row=0, column=6, padx=0, pady=0, columnspan=1)
+canvas1.pack(fill="both", expand=True)
+canvas1.create_image(0, 0, image=background, anchor="nw")
 
-nome_tecnico = tk.Label(aplication, text='CADASTRAR TECNICO')
-nome_tecnico.grid(row=0, column=4, padx=0, pady=0, columnspan=1)
-
-nome_solicitacao = tk.Label(aplication, text='SOLICITAR FERRAMENTA')
-nome_solicitacao.grid(row=0, column=1, padx=0, pady=0, columnspan=1)
-
-'''-------------------------------------------------Botoes para direcionar a paginas------------------------------------'''
+'''----------------------------Boatao solicitar Ferramentas----------------------'''
 imagem_solicitar_ferramenta = tk.PhotoImage(file=r'App\imagens\Solicitar ferramenta.png')
-botao_solicitar_ferramentas = ttk.Button(aplication, image=imagem_solicitar_ferramenta, command=janela_solicitacoes)
-botao_solicitar_ferramentas.place()
-botao_solicitar_ferramentas.grid(row=2, column=1, padx=0, pady=0, columnspan=1)
+botao1 = ttk.Button( aplication,image=imagem_solicitar_ferramenta, command=janela_solicitacoes) 
+botao1_canvas = canvas1.create_window(100, 10, anchor= "nw", window= botao1)
 
-'''--------------------------------------------IMAGENS BUTTOM---------------------------------------------------------------'''
+'''----------------------------Botao Cadastro Tecnico----------------'''
 imagem_cadastro_tecnico = tk.PhotoImage(file=r'App\imagens\tecnico.png')
-botao_cadastrar_tecnico = ttk.Button(aplication, image=imagem_cadastro_tecnico, command=janela_cadastro_tecnicos)
-botao_cadastrar_tecnico.place()
-botao_cadastrar_tecnico.grid(row=2, column=4, padx=0, pady=0, columnspan=1)
+botao2 = ttk.Button( aplication, image=imagem_cadastro_tecnico, command= janela_cadastro_tecnicos) 
+botaoe_canvas = canvas1.create_window(100, 90, anchor= "nw", window= botao2)
+
+'''---------------------------Botao Cadastro Ferramentas-------------------------------'''
 imagem_cadastro_ferramenta = tk.PhotoImage(file=r'App\imagens\cadastrar ferramenta.png')
-botao_cadastrar_ferramenta = ttk.Button(aplication, image=imagem_cadastro_ferramenta, command=interface_cadastro_ferramentas)
-botao_cadastrar_ferramenta.place()
-botao_cadastrar_ferramenta.grid(row=2, column=6, padx=0, pady=0, columnspan=1)
+botao3 = ttk.Button( aplication, image=imagem_cadastro_ferramenta, command=interface_cadastro_ferramentas) 
+botaoe_canvas = canvas1.create_window(100, 170, anchor= "nw", window= botao3)
 
 
 
