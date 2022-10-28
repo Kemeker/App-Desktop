@@ -15,13 +15,14 @@ lista_tipo_ferramenta = ['Mecanica', 'Eletronica', 'Segurança', 'Outros']
 lista_unidade_medidas = ["CM", "MT", "Polegada"]
 lista_material_ferramenta = ["Ferro", "Aluminio", "Plastico", "Madeira", "Aço"]
 
-'''-----------------------------------------------INTERFACE CADASTRO DO TECNICO---------------------------------------'''
+'''---INTERFACE CADASTRO DO TECNICO--------'''
 def janela_cadastro_tecnicos():
     janela_cadastro = tk.Toplevel()
     janela_cadastro.geometry("800x400")
     janela_cadastro.title("Cadastrar Técnico")
-    '''------------------------------------------------ADICIONAR INF NO BD------------------------------------------------'''
+    
     def novo_tecnico():
+        '''Funçao para cadastrar Tecnico no banco de dados'''
         global lista_tecnicos
         BD: openpyxl.Workbook = abrir_BD()
         sh = BD.active
@@ -52,28 +53,31 @@ def janela_cadastro_tecnicos():
     
        
 
-    '''-------------------------------------------------Cadastro do Tecnico'''''''''''''''''''''''''''''''''''''''''''''''
+    '''---------------------Cadastro do Tecnico--------------'''
     label_nome = tk.Label(janela_cadastro, text='Nome do Técnico:')
     label_nome.grid(row=0, column=0, padx=0, pady=0, columnspan=1)
     entrar_nome = tk.Entry(janela_cadastro)
     entrar_nome.grid(row=0, column=1, padx=0, pady=0, columnspan=1)
 
-    '''---------------------------------------------------cadastro do cpf-------------------------------------------------'''
+    '''-------------------cadastro do cpf----------------------'''
     label_cpf = tk.Label(janela_cadastro, text='CPF:')
     label_cpf.grid(row=2, column=0, padx=0, pady=0, columnspan=1)
     entrar_cpf = tk.Entry(janela_cadastro)
     entrar_cpf.grid(row=2, column=1, padx=0, pady=0, columnspan=1)
 
+    '''-----------------Numero do Radio--------------------'''
     label_radio = tk.Label(janela_cadastro, text='Nª RADIO:')
     label_radio.grid(row=3, column=0, padx=0, pady=0, columnspan=1)
     entrar_radio = tk.Entry(janela_cadastro)
     entrar_radio.grid(row=3, column=1, padx=0, pady=0, columnspan=1)
 
+    '''---------------------Turno do Tecnico cadastrado----'''
     label_turno = tk.Label(janela_cadastro, text='Turno')
     label_turno.grid(row=4, column=0, padx=0, pady=0, columnspan=1)
     entrar_turno = ttk.Combobox(janela_cadastro, values=lista_turnos)
     entrar_turno.grid(row=4, column=1, padx=0, pady=0, columnspan=1)
 
+    '''------------------------Equipe de trabalho--------------------'''
     label_nome_equipe = tk.Label(janela_cadastro, text='Nome da Equipe:')
     label_nome_equipe.grid(row=5, column=0, padx=0, pady=0, columnspan=1)
     entrar_equipe = tk.Entry(janela_cadastro)
@@ -82,13 +86,14 @@ def janela_cadastro_tecnicos():
     botao_cadastrar_tecnico = tk.Button(janela_cadastro, text='Cadastrar', command=novo_tecnico)
     botao_cadastrar_tecnico.grid(row=6, column=3, padx=0, pady=0, columnspan=1)
 
-'''-----------------------------------------------INTERFACE PARA CADASTRO DE FERRAMENTAS-----------------------------'''
+'''---INTERFACE PARA CADASTRO DE FERRAMENTAS--'''
 def interface_cadastro_ferramentas():
     janela_cadastro_ferramentas = tk.Toplevel()
     janela_cadastro_ferramentas.geometry("800x400")
     janela_cadastro_ferramentas.title("Cadastrar Ferramenta")
 
     def nova_ferramenta():
+        '''Funçao que vai adicionar nova ferramenta'''
         global lista_ferramentas
         BD: openpyxl.Workbook = abrir_BD()
         sh = BD.active
@@ -175,15 +180,17 @@ def interface_cadastro_ferramentas():
     botao_cadastrar_ferramenta = tk.Button(janela_cadastro_ferramentas, text='Cadastrar', command=nova_ferramenta)
     botao_cadastrar_ferramenta.grid(row=10, column=2, padx=0, pady=0, columnspan=1)
 
-'''-----------------------------------------------INTERFACE PARA FAZER SOLICITAÇAO DAS FERRAMENTAS--------------------------------'''
+'''--INTERFACE PARA FAZER SOLICITAÇAO DAS FERRAMENTAS--'''
 def janela_solicitacoes():
-    '''funçao para solicitar'''
+    '''Janela da Interface para Solicitar Ferramenta'''
     
     janela = tk.Toplevel()
     janela.geometry("800x400")
     janela.title("Solicitaçao de Ferramentas")
 
+    
     def nova_solicitacao():
+        '''-Funçao que solicita ao banco de dados , a ferramenta cadastrada-'''
         global lista_ferramentas
         BD: openpyxl.Workbook = abrir_BD()
         sh = BD.active
@@ -217,25 +224,25 @@ def janela_solicitacoes():
     entry_tecnico = ttk.Combobox(janela, values=lista_tecnicos)
     entry_tecnico.grid(row=0, column=1, padx=0, pady=0)
 
-    '''------------------------------------------------Caixa para digitar a ferramenta----------------------------------'''
+    '''-----------Caixa para digitar a ferramenta-------------'''
     label_nome_ferramenta = tk.Label(janela, text="Ferramenta:")
     label_nome_ferramenta.grid(row=1, column=0, padx=5, pady=2)
     ferramentas = ttk.Combobox(janela, values=lista_ferramentas)
     ferramentas.grid(row=1, column=1, padx=5, pady=5)
 
-    '''----------------------------------Caixa para selecionar a voltagem da ferramenta---------------------------------'''
+    '''----------Caixa para selecionar a voltagem da ferramenta-----------'''
     label_selecionar_voltagem = tk.Label(janela, text="Voltagem de Trabalho:")
     label_selecionar_voltagem.grid(row=1, column=2, padx=5, pady=5)
     selecionar_voltagem = ttk.Combobox(janela, values=lista_voltagem)
     selecionar_voltagem.grid(row=1, column=3, padx=5, pady=5)
 
-    '''---------------------------------------Caixa para digitar a unidade de ferramentas-------------------------------'''
+    '''------Caixa para digitar a unidade de ferramentas--------------'''
     label_unidade = tk.Label(janela, text="Unidade:")
     label_unidade.grid(row=1, column=4, padx=5, pady=5, )
     entry_unidade = tk.Entry(janela)
     entry_unidade.grid(row=1, column=5, padx=5, pady=5, )
-    '''------------------------------------------------------------------------------------------------------------------'''
-    '''-------------------------------------------Data de entrada e saida das ferramentas--------------------------------'''
+   
+    '''------------Data de entrada e saida das ferramentas----------------------'''
     label_data_saida = tk.Label(janela, text="Data de saida:")
     label_data_saida.grid(row=2, column=0, padx=10, pady=10, columnspan=1)
     entry_data_saida = tk.Entry(janela)
@@ -244,15 +251,14 @@ def janela_solicitacoes():
     label_data_entrada.grid(row=2, column=2, padx=10, pady=10, columnspan=1)
     entry_data_entrada = tk.Entry(janela)
     entry_data_entrada.grid(row=2, column=3, padx=10, pady=10, columnspan=1)
-    '''------------------------------------------------------------------------------------------------------------------'''
-    '''--------------------------------------Botao para cadastrar a solicitaçao--------------------------------------'''
+    
+    '''--------------------------------------Botao para cadastrar a solicitaçao---------------------------'''
     botao_cadastrar_solicitacao = ttk.Button(janela, text="Cadastrar Solicitaçao", command=nova_solicitacao)
     botao_cadastrar_solicitacao.grid(row=4, column=1, sticky=tk.E, padx=5, pady=5)
 
-    '''-----------------------------------------------INTERFACE PRINCIPAL DA APLICAÇAO-------------------------------------'''
+   
 
-
-'''-----------------------------------------------INTERFACE PRINCIPAL DO SISTEMA-----------------------------------------------'''
+'''---------------------------------------------------------INTERFACE PRINCIPAL DO SISTEMA-----------------------------------------------'''
 aplication = tk.Tk()
 
 aplication.title("DBV Softwares & Sistemas")
