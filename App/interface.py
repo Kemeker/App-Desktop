@@ -1,11 +1,14 @@
+from webbrowser import BackgroundBrowser
+from numpy import imag
 import openpyxl
 import pandas as pd
-from tkinter import ttk
+from tkinter import Canvas, PhotoImage, ttk
 import tkinter as tk
 import datetime as dt
 import os
 import tkinter.messagebox as msg
 from funçao_banco import *
+from PIL import ImageTk, Image
 
 lista_voltagem = ["110v", "220v", "360v", "110v~220v", "Energia Desligada"]
 lista_ferramentas = carrega_lista('Descriçao Ferramenta')
