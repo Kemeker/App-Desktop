@@ -7,9 +7,9 @@ de um empresa Audio/Visual.
 
 O Aplicativo consiste em tres funçoes basicas:
 
-Cadastro de Tecnicos
-Cadastro de ferramentas
-solicitaçao de ferramentas
+Cadastro de Tecnicos, Cadastro de ferramentas, solicitaçao de ferramentas
+
+
 
 
 ## 🚀 Sobre mim
