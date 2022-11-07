@@ -13,7 +13,7 @@ solicitaçao de ferramentas
 
 
 ## 🚀 Sobre mim
-Eu sou Cristian e estou cursando desenvolvimento full stack na estacio.
+Eu sou Cristian e estou cursando desenvolvimento full stack na Estacio.
 
 
 ## 🔗 Links
