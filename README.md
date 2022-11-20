@@ -2,11 +2,11 @@
 
 ![image](https://user-images.githubusercontent.com/104402733/196836852-c3d584c4-1e24-4ab3-91c9-ffb8d80ef98c.png)
 
-#Missão Certificação do 1ª semestre
-#Turma: Turma 22.3 - 1º semestre
-#Instituiçao: Estacio de Sá
-#Dev Team - 25
-#Alunos: Cristian Bevilaqua, Felipe Vicentini Braga, 
+Missão Certificação do 1ª semestre
+Turma: Turma 22.3 - 1º semestre
+Instituiçao: Estacio de Sá
+Dev Team - 25
+Alunos: Cristian Bevilaqua, Felipe Vicentini Braga, 
 
 ## 🚀 Sobre o projeto
 
