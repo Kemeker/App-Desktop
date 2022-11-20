@@ -6,7 +6,7 @@
 # Turma: Turma 22.3 - 1º semestre
 # Instituiçao: Estacio de Sá
 # Dev Team - 25
-# Alunos: Cristian Bevilaqua, Felipe Vicentini Braga, 
+# Alunos: Cristian Bevilaqua, Felipe Vicentini Braga, Lucca Ribeiro Polli Alves
 
 ## 🚀 Sobre o projeto
 
