@@ -1,27 +1,26 @@
+# DBV Software e Sistemas - App-Desktop
 
-# App-Desktop
-Missão Certificação do 1ª semestre
 ![image](https://user-images.githubusercontent.com/104402733/196836852-c3d584c4-1e24-4ab3-91c9-ffb8d80ef98c.png)
-Aplicativo desenvolvido para executar o controle de solicitaçao e cadastro de ferramentas
-de um empresa Audio/Visual.
 
-O Aplicativo consiste em tres funçoes basicas:
+#Missão Certificação do 1ª semestre
+#Turma: Turma 22.3 - 1º semestre
+#Instituiçao: Estacio de Sá
+#Dev Team - 25
+#Alunos: Cristian Bevilaqua, Felipe Vicentini Braga, 
 
-Cadastro de Tecnicos, Cadastro de ferramentas, solicitaçao de ferramentas
+## 🚀 Sobre o projeto
+
+Desenvolvido a empresa DBV Softwares e Sistemas, para criar uma aplicaçao que consiste em fazer o cadastro e controle de ferramentas, tecnicos e solicitaçoes 
+em uma empresa audio/visual.
+
+Sao as tres funçoes basicas...
+
+Interface principal 
+Interface de cadastro de Tecnicos
+Interface de cadastro de Ferramentas
+Interface de solicitaçao de ferramentas
 
 
 
-
-## 🚀 Sobre mim
-Eu sou Cristian e estou cursando desenvolvimento full stack na Estacio.
-
-
-## 🔗 Links
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/cristian-bevilaqua-6506ba217/)
-
-
-# Olá, eu sou a Cristian! 👋
-
-
-## 🛠 Habilidades
-Javascript, HTML, CSS, Python
+## 🛠 Liguagem Utilizada
+Python
