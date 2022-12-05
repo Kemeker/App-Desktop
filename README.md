@@ -6,7 +6,7 @@
 # Turma: Turma 22.3 - 1º semestre
 # Instituiçao: Estacio de Sá
 # Dev Team - 25
-# Alunos: Cristian Bevilaqua, Felipe Vicentini Braga, Lucca Ribeiro Poll, Alexandre Chiaretti do Nascimento Junior Alves, Rafael Souza Pimentel
+# Alunos: Cristian Bevilaqua, Felipe Vicentini Braga, Lucca Ribeiro Poll, Alexandre Chiaretti do Nascimento Junior Alves, Rafael Souza Pimentel, Alexandre Chiaretti do Nascimento Junior
 
 ## 🚀 Sobre o projeto
 
