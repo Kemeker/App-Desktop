@@ -24,3 +24,6 @@ Interface de solicitaçao de ferramentas
 
 ## 🛠 Liguagem Utilizada
 Python
+## Screenshots
+
+![App Screenshot](https://media.licdn.com/dms/image/D4D22AQGt2W_VF4d-bg/feedshare-shrink_2048_1536/0/1666988238559?e=1697068800&v=beta&t=K1YXBGl1c08QW4J5AfTvVj4ou4VlGEGb9FzdBc-jhuw)
