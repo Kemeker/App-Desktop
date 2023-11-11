@@ -4,6 +4,7 @@ from numpy import imag
 import pandas as pd
 from tkinter import Canvas, PhotoImage, ttk
 import tkinter as tk
+import tkinter.ttk as ttk
 import datetime as dt
 import os
 import tkinter.messagebox as msg
@@ -12,7 +13,7 @@ import sqlite3
 from DB.banco_dados import abrir_BD, fechar_BD, carrega_lista
 
 
-
+lista_voltagem = ['220v', '110v']
 
 '''---INTERFACE CADASTRO DO TECNICO--------'''
 def janela_cadastro_tecnicos():
@@ -221,6 +222,35 @@ def janela_solicitacoes():
     botao_cadastrar_solicitacao = ttk.Button(janela, text="Cadastrar Solicitaçao", command=nova_solicitacao)
     botao_cadastrar_solicitacao.grid(row=4, column=1, sticky=tk.E, padx=5, pady=5)
 
+'''CRIA UMA ANIMAÇAO NOS BOTOES'''
+def show_tooltip(widget, text):
+    def enter(event):
+        x, y, _, _ = widget.bbox("insert")
+        x += widget.winfo_rootx() + 25
+        y += widget.winfo_rooty() + 25
+
+        # Cria uma janela de dica de ferramenta (tooltip)
+        tw = tk.Toplevel(widget)
+        tw.wm_overrideredirect(True)
+        tw.wm_geometry(f"+{x}+{y}")
+
+        label = tk.Label(tw, text=text, justify='left',
+                         background="#ffffe0", relief='solid', borderwidth=1,
+                         font=("tahoma", "8", "normal"))
+        label.pack(ipadx=1)
+
+        widget.tooltip = tw
+
+    def leave(event):
+        tw = widget.tooltip
+        if tw:
+            tw.destroy()
+            widget.tooltip = None
+
+    widget.bind("<Enter>", enter)
+    widget.bind("<Leave>", leave)
+
+
 
 '''---------------------------------------------------------INTERFACE PRINCIPAL DO SISTEMA-----------------------------------------------'''
 aplication = tk.Tk()
@@ -239,16 +269,19 @@ canvas1.create_image(0, 0, image=background, anchor="nw")
 imagem_solicitar_ferramenta = tk.PhotoImage(file='C:\\Users\\crist\\OneDrive\\Documentos\\GitHub\\App-Desktop\\App\\imagens\\Solicitar ferramenta.png')
 botao1 = ttk.Button( aplication,image=imagem_solicitar_ferramenta, command=janela_solicitacoes) 
 botao1_canvas = canvas1.create_window(100, 10, anchor= "nw", window= botao1)
+show_tooltip(botao1, "Solicitar Ferramentas")
 
 '''----------------------------Botao Cadastro Tecnico----------------'''
 imagem_cadastro_tecnico = tk.PhotoImage(file='C:\\Users\\crist\\OneDrive\\Documentos\\GitHub\\App-Desktop\\App\\imagens\\tecnico.png')
 botao2 = ttk.Button( aplication, image=imagem_cadastro_tecnico, command= janela_cadastro_tecnicos) 
 botaoe_canvas = canvas1.create_window(100, 90, anchor= "nw", window= botao2)
+show_tooltip(botao2, "Novo Tecnico")
 
 '''---------------------------Botao Cadastro Ferramentas-------------------------------'''
 imagem_cadastro_ferramenta = tk.PhotoImage(file='C:\\Users\\crist\\OneDrive\\Documentos\\GitHub\\App-Desktop\\App\\imagens\\cadastrar ferramenta.png')
 botao3 = ttk.Button( aplication, image=imagem_cadastro_ferramenta, command=interface_cadastro_ferramentas) 
 botaoe_canvas = canvas1.create_window(100, 170, anchor= "nw", window= botao3)
+show_tooltip(botao3, "Cadastrar ferramenta")
 
 
 
