@@ -1,16 +1,17 @@
 from turtle import bgcolor
 from webbrowser import BackgroundBrowser
 from numpy import imag
-import openpyxl
+
 import pandas as pd
 from tkinter import Canvas, PhotoImage, ttk
 import tkinter as tk
 import datetime as dt
 import os
 import tkinter.messagebox as msg
-from funçao_banco import *
+from funcao_banco import *
 from PIL import ImageTk, Image
 
+'''
 lista_voltagem = ["110v", "220v", "360v", "110v~220v", "Energia Desligada"]
 lista_ferramentas = carrega_lista('Descriçao Ferramenta')
 lista_tecnicos = carrega_lista('Tecnicos')
@@ -18,6 +19,7 @@ lista_turnos = ["Manha", "Tarde", "Noite"]
 lista_tipo_ferramenta = ['Mecanica', 'Eletronica', 'Segurança', 'Outros']
 lista_unidade_medidas = ["centimetros", "metros", "polegada"]
 lista_material_ferramenta = ["Ferro", "Aluminio", "Plastico", "Madeira", "Aço", "Metal"]
+'''
 
 '''---INTERFACE CADASTRO DO TECNICO--------'''
 def janela_cadastro_tecnicos():
