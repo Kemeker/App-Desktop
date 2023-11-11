@@ -9,19 +9,11 @@ import os
 import tkinter.messagebox as msg
 from PIL import ImageTk, Image
 import sqlite3
-from banco_dados import abrir_BD, fechar_BD, carregar_lista
-from funcao_banco import carrega_lista 
+from DB.banco_dados import abrir_BD, fechar_BD, carregar_lista
+from DB.funcao_banco import carrega_lista 
 
 
-'''
-lista_voltagem = ["110v", "220v", "360v", "110v~220v", "Energia Desligada"]
-lista_ferramentas = carrega_lista('Descriçao Ferramenta')
-lista_tecnicos = carrega_lista('Tecnicos')
-lista_turnos = ["Manha", "Tarde", "Noite"]
-lista_tipo_ferramenta = ['Mecanica', 'Eletronica', 'Segurança', 'Outros']
-lista_unidade_medidas = ["centimetros", "metros", "polegada"]
-lista_material_ferramenta = ["Ferro", "Aluminio", "Plastico", "Madeira", "Aço", "Metal"]
-'''
+
 
 '''---INTERFACE CADASTRO DO TECNICO--------'''
 def janela_cadastro_tecnicos():
