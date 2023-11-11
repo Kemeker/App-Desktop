@@ -53,7 +53,7 @@ def criar_tabelas():
         '''
         CREATE TABLE IF NOT EXISTS Tecnicos (
             idTecnicos INTEGER PRIMARY KEY,
-            Tecnico TEXT,
+            Nome TEXT,
             CPF INTEGER,
             Turno TEXT,
             Radio INTEGER, 

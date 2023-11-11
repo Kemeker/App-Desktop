@@ -34,8 +34,10 @@ def janela_cadastro_tecnicos():
         cursor = BD.cursor()
 
         '''Codigo para iserir dados no banco'''
-        cursor.execute('INSERT INTO Tecnicos (Nome, CPF, Turno, Radio, Equipe) VALUES (?, ?, ?, ?, ?)',
-                       (entrar_nome.get(), entrar_cpf.get(), entrar_turno.get(), entrar_radio.get(), entrar_equipe.get()))
+        cursor.execute(
+            'INSERT INTO Tecnicos ( Nome, CPF, Turno, Radio, Equipe) VALUES (?, ?, ?, ?, ?, ?)',
+                                  ( nome_tecnico.get(), cpf_tecnico.get(), turno_tecnico.get(), radio_tecnico.get(), equipe_tecnico.get())
+)
 
         
 
