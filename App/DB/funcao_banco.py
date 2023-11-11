@@ -1,6 +1,6 @@
 import sqlite3
 
-_caminho = r'App\DB\banco_dados.db'
+_caminho = r'DB\banco_dados.db'
 
 def abrir_BD()-> sqlite3.Connection:
     '''Retorna em uma variavel o banco de dados aberto.'''

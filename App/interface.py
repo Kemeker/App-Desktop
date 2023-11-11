@@ -9,8 +9,7 @@ import os
 import tkinter.messagebox as msg
 from PIL import ImageTk, Image
 import sqlite3
-from DB.banco_dados import abrir_BD, fechar_BD, carregar_lista
-from DB.funcao_banco import carrega_lista 
+from DB.banco_dados import abrir_BD, fechar_BD, carrega_lista
 
 
 
@@ -89,7 +88,7 @@ def interface_cadastro_ferramentas():
 
         '''Codigo para iserir dados nno banco'''
         cursor.execute( 'INSERT INTO Ferramentas (id, DescricaoFerramenta, Fabricante, Voltagem, Tamanho, UnidadeDeMedida, TipoDeFerramenta, MaterialDaFerramenta, TempoMaximoDeReserva)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                                                 (entrar_id.get(), entrar_descricaoferramenta.get(), entrar_fabricante.get(), entrar_voltagem.get(), entrar_tamanho.get(), entrar_unidadeDeMedida.get(), entrar_tipoDeFerramenta.get(), entrar_materialDaFerramenta.get(), entrar_tempoMaximoDeReserva.get() ))                                                                                                                                             
+                                                 (entrar_id.get(), entrar_DescricaoFerramenta.get(), entrar_Fabricante.get(), entrar_Voltagem.get(), entrar_Tamanho.get(), entrar_UnidaeDeMedida.get(), entrar_TipoDeFerramenta.get(), entrar_MaterialDaFerramenta.get(), entrar_TempoMaximoDeReserva.get() ))                                                                                                                                             
                                                                                                                                                                                               
        
         fechar_BD(BD)
@@ -229,7 +228,7 @@ aplication = tk.Tk()
 aplication.title("DBV Softwares & Sistemas")
 aplication.configure(background="grey")
 aplication.geometry("800x600")
-background = PhotoImage(file=r'App\imagens\projeto-desktop.png')
+background = PhotoImage(file='C:\Users\crist\OneDrive\Documentos\GitHub\App-Desktop\App\imagens\projeto-desktop.png')
 canvas1 = Canvas(aplication)
 
 
