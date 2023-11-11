@@ -177,28 +177,14 @@ def janela_solicitacoes():
     def nova_solicitacao():
         '''-Funçao que solicita ao banco de dados , a ferramenta cadastrada-'''
         global lista_ferramentas
-        BD: openpyxl.Workbook = abrir_BD()
-        sh = BD.active
-        colI = 0
-        colF = 0
-        novaLinha = 0
-        for col in range(1, 100, 1):
-            if sh.cell(row=1, column=col).value == 'Nome':
-                colI = col
-                break
-        for col in range(colI, 100, 1):
-            if sh.cell(row=1, column=col + 1).value == None:
-                colF = col
-                break
-        for lin in range(1, 1_000_000, 1):
-            if sh.cell(row=lin, column=colI).value == None:
-                novaLinha = lin
-                break
-        contador = 0
-        infomacoes = [entry_tecnico.get(), ferramentas.get(), selecionar_voltagem.get(), entry_unidade.get(), entry_data_saida.get(), entry_data_entrada.get()]
-        for col in range(colI, colF + 1, 1):
-            sh.cell(row=novaLinha, column=col).value = infomacoes[contador]
-            contador +=1
+        BD = abrir_BD()
+        cursor = BD.cursor()
+
+        '''Codigo para iserir dados nno banco'''
+        cursor.execute('INSERT INTO SolicitarFerramentas (Nome, Ferramenta, Voltagem, Unidade, DataSaida, DataEntrada) VALUES (?, ?, ?, ?, ?, ?)',
+                (entry_tecnico.get(), ferramentas.get(), selecionar_voltagem.get(), entry_unidade.get(), entry_data_saida.get(), entry_data_entrada.get()))
+
+
         fechar_BD(BD)
         lista_ferramentas = carrega_lista('Ferramentas')
         janela.destroy()
