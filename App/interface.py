@@ -38,7 +38,7 @@ def janela_cadastro_tecnicos():
 
         '''Codigo para iserir dados no banco'''
         cursor.execute('INSERT INTO Tecnicos (Nome, CPF, Turno, Radio, Equipe) VALUES (?, ?, ?, ?, ?)',
-                       (entrar_Nome.get(), entrar_CPF.get(), entrar_Turno.get(), entrar_Radio.get(), entrar_Equipe.get()))
+                       (entrar_nome.get(), entrar_cpf.get(), entrar_turno.get(), entrar_radio.get(), entrar_equipe.get()))
 
         
 
@@ -97,7 +97,7 @@ def interface_cadastro_ferramentas():
 
         '''Codigo para iserir dados nno banco'''
         cursor.execute( 'INSERT INTO Ferramentas (id, DescricaoFerramenta, Fabricante, Voltagem, Tamanho, UnidadeDeMedida, TipoDeFerramenta, MaterialDaFerramenta, TempoMaximoDeReserva)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                                                 (entrar_id.get(), entrar_DescricaoFerramenta.get(), entrar_Fabricante.get(), entrar_Voltagem.get(), entrar_Tamanho.get(), entrar_UnidadeDeMedida.get(), entrar_TipoDeFerramenta.get(), entrar_MaterialDaFerramenta.get(), entrar_TempoMaximoDeReserva.get() ))                                                                                                                                             
+                                                 (entrar_id.get(), entrar_descricaoferramenta.get(), entrar_fabricante.get(), entrar_voltagem.get(), entrar_tamanho.get(), entrar_unidadeDeMedida.get(), entrar_tipoDeFerramenta.get(), entrar_materialDaFerramenta.get(), entrar_tempoMaximoDeReserva.get() ))                                                                                                                                             
                                                                                                                                                                                               
        
         fechar_BD(BD)
