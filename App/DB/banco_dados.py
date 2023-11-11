@@ -14,7 +14,7 @@ def criar_tabelas():
             UnidadeDeMedida TEXT,
             TipoDeFerramenta TEXT,
             MaterialDaFerramenta TEXT,
-            TempoMaximoDeReserva TIME 
+            TempoMaximoDeReserva INTEGER 
         )
         '''
     )
@@ -23,11 +23,25 @@ def criar_tabelas():
         '''
         CREATE TABLE IF NOT EXISTS Tecnicos (
             idTecnicos INTEGER PRIMARY KEY,
-            Tecnicos TEXT,
+            Tecnico TEXT,
             CPF INTEGER,
             Turno TEXT,
             Radio INTEGER, 
             Equipe TEXT
+        )
+        '''
+    )
+
+    cursor.execute(
+        '''
+        CREATE TABLE IF NOT EXISTS SolicitarFerramentas (
+            idSolicitacoes INTEGER PRIMARY KEY AUTOINCREMENT,
+            Nome TEXT,
+            Ferramenta TEXT,
+            Voltagem TEXT,
+            Unidade TEXT,
+            DataSaida TEXT,
+            DataEntrada TEXT
         )
         '''
     )

@@ -1,15 +1,17 @@
 from turtle import bgcolor
 from webbrowser import BackgroundBrowser
 from numpy import imag
-
 import pandas as pd
 from tkinter import Canvas, PhotoImage, ttk
 import tkinter as tk
 import datetime as dt
 import os
 import tkinter.messagebox as msg
-from funcao_banco import *
 from PIL import ImageTk, Image
+import sqlite3
+from banco_dados import abrir_BD, fechar_BD, carregar_lista
+from funcao_banco import carrega_lista 
+
 
 '''
 lista_voltagem = ["110v", "220v", "360v", "110v~220v", "Energia Desligada"]
@@ -31,28 +33,15 @@ def janela_cadastro_tecnicos():
     def novo_tecnico():
         '''Funçao para cadastrar Tecnico no banco de dados'''
         global lista_tecnicos
-        BD: openpyxl.Workbook = abrir_BD()
-        sh = BD.active
-        colI = 0
-        colF = 0
-        novaLinha = 0
-        for col in range(1, 100, 1):
-            if sh.cell(row=1, column=col).value == 'Tecnicos':
-                colI = col
-                break
-        for col in range(colI, 100, 1):
-            if sh.cell(row=1, column=col + 1).value == None:
-                colF = col
-                break
-        for lin in range(1, 1_000_000, 1):
-            if sh.cell(row=lin, column=colI).value == None:
-                novaLinha = lin
-                break
-        contador = 0
-        infomacoes = [entrar_nome.get(), entrar_cpf.get(), entrar_turno.get(), entrar_radio.get(), entrar_equipe.get()]
-        for col in range(colI, colF + 1, 1):
-            sh.cell(row=novaLinha, column=col).value = infomacoes[contador]
-            contador +=1
+        BD = abrir_BD()
+        cursor = BD.cursor()
+
+        '''Codigo para iserir dados no banco'''
+        cursor.execute('INSERT INTO Tecnicos (Nome, CPF, Turno, Radio, Equipe) VALUES (?, ?, ?, ?, ?)',
+                       (entrar_Nome.get(), entrar_CPF.get(), entrar_Turno.get(), entrar_Radio.get(), entrar_Equipe.get()))
+
+        
+
         fechar_BD(BD)
         lista_tecnicos = carrega_lista('Tecnicos')
         janela_cadastro.destroy()
@@ -103,29 +92,14 @@ def interface_cadastro_ferramentas():
     def nova_ferramenta():
         '''Funçao que vai adicionar nova ferramenta'''
         global lista_ferramentas
-        BD: openpyxl.Workbook = abrir_BD()
-        sh = BD.active
-        colI = 0
-        colF = 0
-        novaLinha = 0
-        for col in range(1, 100, 1):
-            if sh.cell(row=1, column=col).value == 'ID':
-                colI = col
-                break
-        for col in range(colI, 100, 1):
-            if sh.cell(row=1, column=col + 1).value == None:
-                colF = col
-                break
-        for lin in range(1, 1_000_000, 1):
-            if sh.cell(row=lin, column=colI).value == None:
-                novaLinha = lin
-                break
-        contador = 0
-        infomacoes = [entry_id_ferramenta.get(), entry_nome_ferramenta.get(), entry_fabricante.get(), entry_voltagem_uso.get(), entry_tamanho.get(), entry_unidade_medida.get(),  
-        entry_tipo_ferramenta.get(), entry_material_ferramenta.get(), entry_tempo_uso.get() ]
-        for col in range(colI, colF + 1, 1):
-            sh.cell(row=novaLinha, column=col).value = infomacoes[contador]
-            contador +=1
+        BD = abrir_BD()
+        cursor = BD.cursor()
+
+        '''Codigo para iserir dados nno banco'''
+        cursor.execute( 'INSERT INTO Ferramentas (id, DescricaoFerramenta, Fabricante, Voltagem, Tamanho, UnidadeDeMedida, TipoDeFerramenta, MaterialDaFerramenta, TempoMaximoDeReserva)VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                                                 (entrar_id.get(), entrar_DescricaoFerramenta.get(), entrar_Fabricante.get(), entrar_Voltagem.get(), entrar_Tamanho.get(), entrar_UnidadeDeMedida.get(), entrar_TipoDeFerramenta.get(), entrar_MaterialDaFerramenta.get(), entrar_TempoMaximoDeReserva.get() ))                                                                                                                                             
+                                                                                                                                                                                              
+       
         fechar_BD(BD)
         lista_ferramentas = carrega_lista('Descriçao Ferramenta')
         janela_cadastro_ferramentas.destroy()
