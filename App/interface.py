@@ -228,7 +228,7 @@ aplication = tk.Tk()
 aplication.title("DBV Softwares & Sistemas")
 aplication.configure(background="grey")
 aplication.geometry("800x600")
-background = PhotoImage(file='C:\Users\crist\OneDrive\Documentos\GitHub\App-Desktop\App\imagens\projeto-desktop.png')
+background = PhotoImage(file='C:\\Users\\crist\\OneDrive\\Documentos\\GitHub\\App-Desktop\\App\\imagens\\projeto-desktop.png')
 canvas1 = Canvas(aplication)
 
 
@@ -236,17 +236,17 @@ canvas1.pack(fill="both", expand=True)
 canvas1.create_image(0, 0, image=background, anchor="nw")
 
 '''----------------------------Boatao solicitar Ferramentas----------------------'''
-imagem_solicitar_ferramenta = tk.PhotoImage(file=r'App\imagens\Solicitar ferramenta.png')
+imagem_solicitar_ferramenta = tk.PhotoImage(file='C:\\Users\\crist\\OneDrive\\Documentos\\GitHub\\App-Desktop\\App\\imagens\\Solicitar ferramenta.png')
 botao1 = ttk.Button( aplication,image=imagem_solicitar_ferramenta, command=janela_solicitacoes) 
 botao1_canvas = canvas1.create_window(100, 10, anchor= "nw", window= botao1)
 
 '''----------------------------Botao Cadastro Tecnico----------------'''
-imagem_cadastro_tecnico = tk.PhotoImage(file=r'App\imagens\tecnico.png')
+imagem_cadastro_tecnico = tk.PhotoImage(file='C:\\Users\\crist\\OneDrive\\Documentos\\GitHub\\App-Desktop\\App\\imagens\\tecnico.png')
 botao2 = ttk.Button( aplication, image=imagem_cadastro_tecnico, command= janela_cadastro_tecnicos) 
 botaoe_canvas = canvas1.create_window(100, 90, anchor= "nw", window= botao2)
 
 '''---------------------------Botao Cadastro Ferramentas-------------------------------'''
-imagem_cadastro_ferramenta = tk.PhotoImage(file=r'App\imagens\cadastrar ferramenta.png')
+imagem_cadastro_ferramenta = tk.PhotoImage(file='C:\\Users\\crist\\OneDrive\\Documentos\\GitHub\\App-Desktop\\App\\imagens\\cadastrar ferramenta.png')
 botao3 = ttk.Button( aplication, image=imagem_cadastro_ferramenta, command=interface_cadastro_ferramentas) 
 botaoe_canvas = canvas1.create_window(100, 170, anchor= "nw", window= botao3)
 
